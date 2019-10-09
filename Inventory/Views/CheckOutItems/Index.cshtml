@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Inventory.Models.CheckOutItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>Item </th>
+        <th>Quantity</th>
+        <th>Selling Price </th>
+        <th>Date</th>        
+        <th>Issued To </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SellingPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IssueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Staff.Name)
+        </td>
+
+    </tr>
+}
+
+</table>

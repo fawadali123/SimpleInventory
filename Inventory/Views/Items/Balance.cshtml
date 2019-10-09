@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Inventory.Models.InventoryBalanceViewModel>
+
+@{
+    ViewBag.Title = "Balance";
+}
+<br />
+<table class="table table-bordered table-hover table-striped display nowrap" id="tblBalance" style="width:100%">
+    <thead>
+        <tr>
+            <th>Code </th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>IN</th>
+            <th>OUT</th>
+            <th>Balance</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Code </th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>IN</th>
+            <th>OUT</th>
+            <th>Balance</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckInQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckOutQty)
+                </td>
+                <td>
+                    @if (item.Balance > 0)
+                    {
+                        <span class="label label-success"> @Html.DisplayFor(modelItem => item.Balance)</span>
+                    }
+                    else
+                    {
+                        <span class="label label-danger">@Html.DisplayFor(modelItem => item.Balance)</span>
+                    }
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#tblBalance').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'pdf', 'excel'
+                ]
+            });
+        });
+    </script>
+}
